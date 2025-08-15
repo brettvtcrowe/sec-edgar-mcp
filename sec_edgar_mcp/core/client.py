@@ -1,9 +1,9 @@
 from typing import Optional
-from edgar import Company, set_identity, find_company, search
+from edgartools import Company, set_identity, find_company, search
 from ..utils.cache import TickerCache
 from ..utils.exceptions import CompanyNotFoundError
 from ..config import initialize_config
-import edgar
+import edgartools as edgar
 
 
 class EdgarClient:
