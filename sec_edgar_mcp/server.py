@@ -1,4 +1,5 @@
 import argparse
+import os
 from mcp.server.fastmcp import FastMCP
 from sec_edgar_mcp.tools import CompanyTools, FilingsTools, FinancialTools, InsiderTools
 
@@ -495,11 +496,16 @@ def get_recommended_tools(form_type: str):
 def main():
     """Main entry point for the MCP server."""
     parser = argparse.ArgumentParser(description="SEC EDGAR MCP Server - Access SEC filings and financial data")
-    parser.add_argument("--transport", default="stdio", help="Transport method")
+    parser.add_argument("--transport", default="sse", help="Transport method")
+    parser.add_argument("--host", default="0.0.0.0", help="Host to bind to")
+    parser.add_argument("--port", type=int, default=int(os.environ.get("PORT", 8000)), help="Port to bind to")
     args = parser.parse_args()
 
     # Run the MCP server
-    mcp.run(transport=args.transport)
+    if args.transport == "sse":
+        mcp.run(transport="sse", host=args.host, port=args.port)
+    else:
+        mcp.run(transport=args.transport)
 
 
 if __name__ == "__main__":
