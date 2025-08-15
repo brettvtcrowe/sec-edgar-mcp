@@ -1,4 +1,4 @@
 mcp>=1.7.1
-edgartools>=4.4.0
+edgartools
 requests>=2.31.0
 fastmcp
