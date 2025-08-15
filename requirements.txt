@@ -1,3 +1,4 @@
 edgartools
 mcp
 fastmcp
+edgar
